@@ -1,5 +1,6 @@
 package temperature.mediator;
 
+import StagePattern.Radiator;
 import temperature.model.Temperature;
 import temperature.model.TemperatureList;
 
@@ -10,11 +11,13 @@ public class TemperatureModelManager implements TemperatureModel
 {
   private PropertyChangeSupport propertyChangeSupport;
   private TemperatureList temperatureList;
+  private Radiator radiator;
 
   public TemperatureModelManager()
   {
     propertyChangeSupport = new PropertyChangeSupport(this);
     temperatureList = new TemperatureList();
+    radiator = new Radiator();
   }
 
   @Override public void addTemperature(String id, double value)
@@ -66,4 +69,19 @@ public class TemperatureModelManager implements TemperatureModel
       propertyChangeSupport.removePropertyChangeListener(propertyName, listener);
     }
   }
+
+  public void turnUp(){
+    this.radiator.turnUp();
+  }
+
+  @Override public void turnDown()
+  {
+    this.radiator.turnDown();
+  }
+
+  @Override public int getPower()
+  {
+    return 0;
+  }
+
 }

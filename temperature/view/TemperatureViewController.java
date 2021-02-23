@@ -1,6 +1,7 @@
 package temperature.view;
 
 import StagePattern.Radiator;
+import StagePattern.RadiatorState;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
@@ -20,6 +21,7 @@ public class TemperatureViewController implements PropertyChangeListener
    @FXML private Label rediatorStage;
 
 
+
    private ViewHandler viewHandler;
    private Region root;
    private TemperaturViewModel viewModel;
@@ -36,8 +38,6 @@ public class TemperatureViewController implements PropertyChangeListener
       outputLabel.textProperty().bind(viewModel.temperaturProperty());
       t1.textProperty().bind(viewModel.temperaturProperty1());
       t0.textProperty().bind(viewModel.temperaturProperty2());
-      filterLabel.textProperty().bind(viewModel.filterProperty());
-      filterField.textProperty().bindBidirectional(viewModel.filterProperty());
       rediatorStage.textProperty().bind(viewModel.getPowerProperty());
    }
 
@@ -53,10 +53,6 @@ public class TemperatureViewController implements PropertyChangeListener
     }
 
 
-   @FXML private void onFilter()
-   {
-   viewModel.unFilter();
-   }
 
    @Override public void propertyChange(PropertyChangeEvent evt)
    {
@@ -68,11 +64,12 @@ public class TemperatureViewController implements PropertyChangeListener
 
    public void TurnDown(ActionEvent actionEvent)
    {
-      viewModel.setRadiatorStateDown(new Radiator());
+      viewModel.turnDown();
    }
 
    public void TurnUp(ActionEvent actionEvent)
    {
-      viewModel.setRadiatorStateUp(new Radiator());
+      viewModel.turnUp();
+
    }
 }

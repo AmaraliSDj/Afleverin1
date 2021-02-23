@@ -9,4 +9,9 @@ public interface TemperatureModel extends NamedPropertyChangeSubject
   Temperature getLastInsertedTemperature();
 
   Temperature getLastInsertedTemperature(String id);
+
+  void turnUp();
+  void turnDown();
+  int getPower();
+
 }

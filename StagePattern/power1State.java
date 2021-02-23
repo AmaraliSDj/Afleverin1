@@ -11,7 +11,8 @@ public class power1State implements RadiatorState
 
   @Override public void turnDown(Radiator radiator)
   {
-
+    System.out.println("");
+    radiator.setPowerStage((new offState()));
   }
 
   @Override public int getpower()

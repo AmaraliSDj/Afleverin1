@@ -8,6 +8,7 @@ import javafx.beans.property.StringProperty;
 import temperature.mediator.TemperatureModel;
 import temperature.model.Temperature;
 import temperature.model.TemperatureList;
+import StagePattern.offState;
 
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -22,12 +23,13 @@ public class TemperaturViewModel implements PropertyChangeListener
     private StringProperty id;
     private StringProperty filterlabel;
     private String thermometerId;
-    private Radiator radiator;
+
     private RadiatorState radiatorState;
 
     private StringProperty temperatur1;
     private StringProperty temperatur2;
     private StringProperty getPower;
+    private offState offState;
 
 
     /*public void getLastTemp() {
@@ -42,6 +44,7 @@ public class TemperaturViewModel implements PropertyChangeListener
             temperatur1 = new SimpleStringProperty();
             temperatur2 = new SimpleStringProperty();
             getPower = new SimpleStringProperty();
+            model.addListener("radiator",this);
             model.addListener("AddTemperature",this);
         }
 
@@ -73,6 +76,7 @@ public class TemperaturViewModel implements PropertyChangeListener
                 Temperatur.setValue(("Undendørs") + ": " + model.getLastInsertedTemperature("0").getValue());
                 temperatur1.setValue(("Langt fra radiator") + ": " + model.getLastInsertedTemperature("1").getValue());
                 temperatur2.setValue(("tæt på radiator") + ": " + model.getLastInsertedTemperature("2").getValue());
+                getPower.setValue("Stages: " + model.getPower());
             });
 
         }
@@ -109,16 +113,18 @@ public class TemperaturViewModel implements PropertyChangeListener
         update();
     }
 
-    public void setRadiatorStateUp(Radiator radiator){
-           this.radiator.turnUp();
+    public void turnUp(){
+           this.model.turnUp();
+        System.out.println("hej");
     }
 
-    public void setRadiatorStateDown(Radiator radiator){
-        this.radiator.turnDown();
+    public void turnDown(){
+        this.model.turnDown();
     }
 
-    public void getPower(){
-            this.radiator.getPower();
+    public int getPower(){
+            return
+            this.model.getPower();
     }
 
 
