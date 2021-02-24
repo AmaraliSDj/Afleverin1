@@ -81,7 +81,7 @@ public class TemperatureModelManager implements TemperatureModel
 
   @Override public int getPower()
   {
-    return 0;
+    return radiator.getPower();
   }
 
 }

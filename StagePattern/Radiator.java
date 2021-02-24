@@ -5,7 +5,7 @@ import java.beans.PropertyChangeSupport;
 public class Radiator
 {
   private RadiatorState currentState = new offState();
-  private PropertyChangeSupport support;
+  private PropertyChangeSupport support = new PropertyChangeSupport(this);
 
 
   public void turnUp(){
