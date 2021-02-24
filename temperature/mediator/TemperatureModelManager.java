@@ -18,6 +18,9 @@ public class TemperatureModelManager implements TemperatureModel
     propertyChangeSupport = new PropertyChangeSupport(this);
     temperatureList = new TemperatureList();
     radiator = new Radiator();
+
+
+
   }
 
   @Override public void addTemperature(String id, double value)

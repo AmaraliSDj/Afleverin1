@@ -34,7 +34,7 @@ public class Termometer implements Runnable
   {
     while (true)
     {
-      temperature(t, 2, d, 0, 6);
+      temperature(t, model.getPower(), d, 0, 6);
       //System.out.println(id + " " + t);
       model.addTemperature(id, t);
 
